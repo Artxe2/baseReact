@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.mybatis.sql">
+
+	<select id="geo_chart" parameterType="map" resultType="java.util.LinkedHashMap">
+		SELECT country, rownum * 100 power
+		FROM
+		(SELECT 'Germany' country FROM dual
+		UNION
+		SELECT 'United States' country FROM dual
+		UNION
+		SELECT 'Brazil' country FROM dual
+		UNION
+		SELECT 'Canada' country FROM dual
+		UNION
+		SELECT 'France' country FROM dual
+		UNION
+		SELECT 'RU' country FROM dual
+		UNION
+		SELECT 'KR' country FROM dual)
+	</select>
+	<select id="core_chart" parameterType="map" resultType="java.util.LinkedHashMap">
+		SELECT
+			'row' || rownum rowname,
+			(rownum - mod(rownum, 2) * 1.5 + 10) * 1 column1,
+			(rownum - mod(rownum, 2) * 1.5 + 10) * 2 column2,
+			(rownum - mod(rownum, 2) * 1.5 + 10) * 3 column3,
+			(rownum - mod(rownum, 2) * 1.5 + 10) * 4 column4,
+			(rownum - mod(rownum, 2) * 1.5 + 10) * 5 column5
+		FROM dual
+		CONNECT BY level &lt; 10
+	</select>
+	<select id="scatter_chart" parameterType="map" resultType="java.util.LinkedHashMap">
+		SELECT
+            (rownum - mod(rownum, 2) * 1.5 + 5) rowname,
+            rownum * 5 column1,
+            -power(rownum - 6, 2) + 55 column2,
+            -power(rownum - 5, 2) + 55 column3,
+            rownum * 15 column4
+        FROM dual
+        CONNECT BY level &lt; 10
+	</select>
+	<select id="core_chart2" parameterType="map" resultType="java.util.LinkedHashMap">
+		SELECT
+            'row' || rownum rowname,
+            rownum * 5 column1,
+            -power(rownum - 6, 2) + 55 column2,
+            -power(rownum - 5, 2) + 55 column3,
+            rownum * 15 column4
+        FROM dual
+        CONNECT BY level &lt; 10
+	</select>
+	<select id="org_chart" parameterType="map" resultType="java.util.LinkedHashMap">
+		SELECT
+			ename,
+			nvl((select ename from emp where empno = e.mgr), '') mgr,
+			job
+		FROM emp e
+	</select>
+	<select id="tree_map" parameterType="map" resultType="java.util.LinkedHashMap">
+		SELECT ename, parent, sal, color
+        FROM (
+            SELECT 'EMP' ename, 'null' parent, 0 sal, 0 color, 0 ord FROM dual
+            UNION
+            SELECT distinct(job) ename, 'EMP' parent, 0 sal, 0 color, 1 ord FROM emp
+            UNION
+            SELECT ename, job parent, sal, sal / 100 color, 2 ord FROM emp
+            ORDER BY ord, parent
+        )
+	</select>
+	<select id="table" parameterType="map" resultType="java.util.LinkedHashMap">
+		SELECT 
+			ename, 
+			sal + nvl(comm, 0) sal, 
+			to_char(sal + nvl(comm, 0), 'FM$999,999,999') f_sal ,
+			nvl2(comm, 'true', 'false') has_comm 
+		FROM emp
+	</select>
+	<select id="timeline" parameterType="map" resultType="java.util.LinkedHashMap">
+		SELECT 
+            ename, 
+            hiredate s, 
+            (hiredate + (rownum - mod(rownum, 2) * 15 + 100)) e
+        FROM emp
+	</select>
+</mapper>

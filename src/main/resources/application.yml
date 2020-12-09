@@ -1,0 +1,24 @@
+server:
+    port: 8000
+spring:
+    mvc:
+        view:
+            prefix: /WEB-INF/jsp/
+            suffix: .jsp
+    datasource:
+        type: com.zaxxer.hikari.HikariDataSource
+        driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
+        url: jdbc:log4jdbc:oracle:thin:@127.0.0.1:1521:orcl11
+        username: scott
+        password: tiger
+        hikari:
+            connection-timeout: 20000
+            minimum-idle: 5
+            maximum-pool-size: 12
+            idle-timeout: 300000
+            max-lifetime: 1200000
+            auto-commit: false
+    servlet:
+        multipart:
+            max-file-size: 50MB
+            max-request-size: 50MB

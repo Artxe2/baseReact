@@ -87,13 +87,13 @@ class App extends Component {
               this.state.customers.map(c => {
                 return (
                   <Customer 
-                    key={c.id}
-                    id={c.id}
-                    image={c.image}
-                    name={c.name} 
-                    birthday={c.birthday} 
-                    gender={c.gender} 
-                    job={c.job}
+                    key={c.ID}
+                    id={c.ID}
+                    image={c.IMAGE}
+                    name={c.NAME} 
+                    birthday={c.BIRTHDAY} 
+                    gender={c.GENDER} 
+                    job={c.JOB}
                   />
                 )
               }) : 

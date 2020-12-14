@@ -1,5 +1,6 @@
 package project.web.backend;
 
+import java.io.IOException;
 import java.util.Map;
 
 import javax.transaction.Transactional;
@@ -7,6 +8,7 @@ import javax.transaction.Transactional;
 import org.apache.mybatis.MybatisDao;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -19,7 +21,7 @@ public class ApiLogic {
     private SqlSessionTemplate sqlSessionTemplate;
 
     @Transactional
-    public Object postCustomers(Map<String, Object> pMap, MultipartFile file) throws Exception {
+    public Object postCustomers(Map<String, Object> pMap, MultipartFile file) throws DataAccessException, IOException {
         logger.info("ApiLogic - postCustomers");
         String filePath = "api_files/" + file.getOriginalFilename();
         java.io.File saveFile = new java.io.File(ROOTPATH, filePath);
@@ -33,17 +35,17 @@ public class ApiLogic {
         file.transferTo(saveFile);
         String name = file.getName();
         pMap.put(name, "http://localhost:3000/uploaded_files/" + filePath);
-        logger.info(name + ": " + filePath + " - " + file.getSize() + "byte");
+        logger.info("{}: {} - {}byte", name, filePath, file.getSize());
         return MybatisDao.insert(sqlSessionTemplate, "postCustomers", pMap);
     }
 
-    public Object getCustomers(Map<String, Object> pMap) throws Exception {
+    public Object getCustomers(Map<String, Object> pMap) throws DataAccessException {
         logger.info("ApiLogic - getCustomers");
         return MybatisDao.selectList(sqlSessionTemplate, "getCustomers", pMap);
     }
 
     @Transactional
-    public Object deleteCustomers(Map<String, Object> pMap) throws Exception {
+    public Object deleteCustomers(Map<String, Object> pMap) throws DataAccessException {
         logger.info("ApiLogic - deleteCustomers");
         return MybatisDao.update(sqlSessionTemplate, "deleteCustomers", pMap);
     }

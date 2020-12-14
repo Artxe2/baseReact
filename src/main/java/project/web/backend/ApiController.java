@@ -16,12 +16,12 @@ import org.springframework.web.multipart.MultipartFile;
 @RestController
 @RequestMapping("api")
 public class ApiController {
-	private static final org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(BaseController.class);
+	private static final org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(ApiController.class);
 	@Autowired
 	private ApiLogic apiLogic;
 
 	@GetMapping("hello")
-	public Object current_time(@RequestParam Map<String, Object> pMap) {
+	public Object hello(@RequestParam Map<String, Object> pMap) {
 		logger.info("ApiController - hello");
 		return "{\"message\": \"Hello Express!\"}";
 	}

@@ -3,7 +3,7 @@ import TableRow from '@material-ui/core/TableRow'
 import TableCell from '@material-ui/core/TableCell'
 import CustomersDelete from './CustomersDelete';
 
-class Customer extends React.Component {
+class Customers extends React.Component {
     render() {
         return (
             <TableRow>
@@ -19,4 +19,4 @@ class Customer extends React.Component {
     }
 }
 
-export default Customer;
+export default Customers;

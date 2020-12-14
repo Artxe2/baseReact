@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import Customer from './components/Customers'
-import CustomerAdd from './components/CustomersPost'
+import Customers from './components/Customers'
+import CustomerPost from './components/CustomersPost'
 import './App.css';
 import Table from '@material-ui/core/Table'
 import Paper from '@material-ui/core/Paper'
@@ -102,7 +102,7 @@ class App extends Component {
               {this.state.customers ? 
                 this.state.customers.map(c => {
                   return (
-                    <Customer 
+                    <Customers 
                       key={c.ID}
                       id={c.ID}
                       image={c.IMAGE}
@@ -123,7 +123,7 @@ class App extends Component {
             </TableBody>
           </Table>
         </Paper>
-        <CustomerAdd stateRefresh={this.stateRefresh}/>
+        <CustomerPost stateRefresh={this.stateRefresh}/>
       </div>
     )
   }

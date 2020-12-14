@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class BoardLogic {
     private static final org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(BoardLogic.class);
-    private static final String ROOTPATH = new java.io.File("src/main/resources/static/uploaded_files").getAbsolutePath();
+    // private static final String ROOTPATH = new java.io.File("src/main/resources/static/uploaded_files").getAbsolutePath();
 
     @Autowired
     private SqlSessionTemplate sqlSessionTemplate;

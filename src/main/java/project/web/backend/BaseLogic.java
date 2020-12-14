@@ -29,9 +29,9 @@ public class BaseLogic {
         int test1 = 0;
         int test2 = 0;
         test1 = MybatisDao.insert(sqlSessionTemplate, "test1", pMap);
-        System.out.println("test1: " + test1);
+        logger.info("test1: " + test1);
         test2 = MybatisDao.insert(sqlSessionTemplate, "test2", pMap);
-        System.out.println("test2: " + test2);
+        logger.info("test2: " + test2);
         return MybatisDao.selectObject(sqlSessionTemplate, "current_time", pMap);
     }
 

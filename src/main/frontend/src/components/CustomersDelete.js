@@ -6,7 +6,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import Button from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography'
 
-class CustomerDelete extends React.Component {
+export default class CustomerDelete extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -58,5 +58,3 @@ class CustomerDelete extends React.Component {
         )
     }
 }
-
-export default CustomerDelete;

@@ -56,7 +56,7 @@ public final class MybatisDao {
 
 	@SuppressWarnings("unchecked")
 	public static List<Map<String, Object>> openCursor(SqlSession sqlSessionTemplate, String sql,
-			Map<String, Object> pMap) throws DataAccessException {
+			Map<String, Object> pMap) {
 		logger.info("DAO [openCursor - {}]", sql);
 		sqlSessionTemplate.update(sql, pMap);
 		return (List<Map<String, Object>>) pMap.get(sql);

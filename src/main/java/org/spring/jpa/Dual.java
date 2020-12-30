@@ -11,5 +11,5 @@ import lombok.Data;
 @Table(name = "SYS.DUAL")
 public class Dual {
     @Id
-    private String current_time;
+    private String currentTime;
 }

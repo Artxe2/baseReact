@@ -49,10 +49,10 @@ public class WsHandler extends TextWebSocketHandler {
 			} else if (protocol.compareTo(Pvo.LOG_OUT) == 0) {
 				session.close();
 			} else {
-				System.out.println("Undefined Protocol...\"" + protocol + "\"");
+				logger.error("Undefined Protocol...\"{}\"", protocol);
 			}
 		} else {
-			System.out.println("Not Included  Protocol...\"" + message.getPayload() + "\"");
+			logger.error("Not Included  Protocol...\"{}\"", message.getPayload());
 		}
 	}
 

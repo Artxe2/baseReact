@@ -1,5 +1,6 @@
 # Development environment
 ### - Java 15.0.1
+### - Gradle
 ## vsCode
 ### - Java Extension Pack
 ### - Spring Boot Extension Pack

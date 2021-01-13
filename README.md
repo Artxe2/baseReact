@@ -6,5 +6,5 @@
 ### - SornarLint
 ### - Lombok Annotations Support for VS Code
 ## nodejs 14.15.1 LTS
-### - npm i
+### - cd src\main\frontend & npm i
 

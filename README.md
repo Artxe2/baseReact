@@ -1,5 +1,5 @@
 # Development environment
-### - Java 15.0.1
+### - AdoptOpenJDK \\ jdk-11.0.11.9-hotspot
 ### - Gradle
 ## vsCode
 ### - Java Extension Pack
